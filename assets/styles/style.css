@@ -1,13 +1,42 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
+  border: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
   outline: none;
 }
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
 
+html,
 body {
-  width: 100vw;
+  line-height: 1;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+.homepage-wrapper {
   height: 100vh;
   overflow-x: hidden;
   display: grid;
@@ -41,15 +70,11 @@ body {
   margin-left: -20px;
   list-style: none;
   text-align: center;
+  font-size: 30px;
 }
 
 .navigation ul li a {
   width: 100%;
-  text-decoration: none;
-}
-
-.navigation ul li a .icon .fa {
-  font-size: 24px;
 }
 
 .fa {
@@ -58,8 +83,8 @@ body {
 }
 
 .nav-icon {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   margin-top: 12px;
   padding: 14px;
   color: #9baad3;
@@ -78,10 +103,6 @@ body {
   color: #7987a5;
 }
 
-.nav-title:hover {
-  color: #1c295d;
-}
-
 .toggle {
   width: 100%;
   background-color: #393d46;
@@ -98,10 +119,6 @@ body {
   color: #ffffff;
 }
 
-/* .logout-icon {
-  margin-top: 15vh;
-} */
-
 .header {
   background-color: #f6f7fb;
   transition: 0.5s;
@@ -112,15 +129,6 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-
-/* .header .topbar {
-  width: 100%;
-  height: 113px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #f6f7fb;
-} */
 
 .name {
   font-size: 28px;
@@ -504,11 +512,26 @@ body {
   border: 2px solid #9baad3;
 }
 
+.explorepage-wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 10% 90%;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "navbar header"
+    "navbar main";
+}
+
+#map_block {
+  grid-area: main;
+  padding: 30px 30px;
+}
 #map_name {
   display: flex;
   flex-direction: row;
-  padding-left: 180px;
-  padding-top: 130px;
 }
 
 #map_icon {
@@ -518,7 +541,6 @@ body {
 #map {
   height: 65vh;
   width: 85%;
-  margin-left: 140px;
   display: flex;
   flex-wrap: nowrap;
 }
@@ -532,7 +554,6 @@ body {
 }
 
 #map_saveblock {
-  padding-left: 180px;
   margin-top: 20px;
   display: flex;
   flex-direction: row;
@@ -694,7 +715,6 @@ body {
   margin-left: 24px;
   display: flex;
   flex-wrap: wrap;
-  list-style: none;
   justify-content: center;
   padding: 0;
 }
@@ -721,23 +741,9 @@ body {
 .gradient_red {
   background: linear-gradient(90deg, #d96f6e 0%, #f2d05c 100%);
 }
-@media (max-width: 500px) {
-  .nav-title {
-    display: none;
-  }
-  .search label input {
-    display: none;
-  }
-  .navigation {
-    width: 100%;
-  }
-  .friends-profiles {
-    grid-template-columns: repeat(3, 30%);
-  }
-}
 
 @media (max-width: 1300px) {
-  body {
+  .homepage-wrapper {
     height: 100%;
     grid-template-columns: 10% 60% 30%;
     grid-template-rows: 10% 30% 30% 30%;
@@ -764,7 +770,15 @@ body {
 }
 
 @media (max-width: 900px) {
-  body {
+  .explorepage-wrapper {
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 90%;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+
+  .homepage-wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: 10% 90%;
     gap: 0px 0px;
@@ -772,12 +786,15 @@ body {
       "header"
       "main";
   }
+  .header {
+    width: 100vw;
+  }
   .navigation {
     z-index: 5;
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 100vw;
+    width: 100%;
     flex-direction: row;
   }
   .navigation ul {
@@ -788,7 +805,7 @@ body {
     display: none;
   }
   .nav-title {
-    font-size: 20px;
+    font-size: 60%;
   }
   .main-container {
     gap: 8px 0px;
@@ -805,5 +822,28 @@ body {
   }
   .friends-profiles {
     grid-template-columns: repeat(3, 20%);
+  }
+}
+
+@media (max-width: 500px) {
+  .homepage-wrapper {
+    grid-template-columns: 100vw;
+    grid-template-rows: 10% 90%;
+    gap: 0px 0px;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+  .nav-title {
+    display: none;
+  }
+  .search label input {
+    display: none;
+  }
+  .navigation {
+    width: 100vw;
+  }
+  .friends-profiles {
+    grid-template-columns: repeat(3, 30%);
   }
 }
